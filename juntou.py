@@ -4,7 +4,11 @@ from tkinter import ttk
 
 def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos como resposta pelo usuário 
     msg = campo_api.get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
-    APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
+    if len(msg) == 40:
+        APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
+        #print(APIKEY.get()) #teste para ver se a API está salvando dentro da função obter_api
+    else:
+        print("Tente novamente! A chave API deve conter 40 caracteres.")
 
 def pesquisar_animais(nome_do_bicho):
 
@@ -17,7 +21,6 @@ def pesquisar_animais(nome_do_bicho):
 
 def fun1():
     obter_api() #função associada ao botão de root para obter a API e deixar na memória armazenado
-    print(APIKEY.get()) #teste para ver se estava salvando a API mesmo
 
 def fun2(): #função associado ao botão de root para fechar a telinha
     root.destroy()
@@ -33,7 +36,6 @@ campo_api.grid(column=1, row=0) #esse é o espaço de texto em si, onde a pessoa
 root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
 APIKEY = StringVar() 
 root.mainloop() 
-#print(APIKEY.get())       #isso aqui é só pra confirmar que ele tá salvando a APIKEY da pessoa corretamente!!
 
 #button = Button(master, text="Button", command=lambda: [fun1(), fun2()]) 
 
@@ -45,6 +47,6 @@ tela2.title("Seleção do Animal")
 ttk.Label(frm, text = "Escolha o seu animal ").grid(column=0, row=0)
 digitar = Text(frm, height=1, width=20)
 digitar.grid(column=1, row=0)
-ttk.Button(frm, text="Pronto!",).grid(column=1, row=1) #falta o command para pesquisar o animal
+ttk.Button(frm, text="Pronto").grid(column=1, row=1) #falta o command para pesquisar o animal
 ttk.Button(frm, text="Voltar").grid(column=2, row=2) #falta o command para retornar
 tela2.mainloop()
