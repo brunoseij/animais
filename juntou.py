@@ -15,15 +15,36 @@ def pesquisar_animais(nome_do_bicho):
     else:
         print("Error:", response.status_code, response.text)
 
+def fun1():
+    obter_api() #função associada ao botão de root para obter a API e deixar na memória armazenado
+    print(APIKEY.get()) #teste para ver se estava salvando a API mesmo
+
+def fun2(): #função associado ao botão de root para fechar a telinha
+    root.destroy()
+
+#tela de COLOCAR API
 root = Tk()
 frm = ttk.Frame(root, padding=100)
 frm.grid()
 ttk.Label(frm, text="Insira a sua chave API ").grid(column=0, row=0) #esse é só o texto da esquerda
-ttk.Button(frm, text = "Clica", command = obter_api).grid(column=2, row=0) #nesse caso, o comando associado ao botão é de uma função definida (def obter_api)
-campo_api = Text(frm, height = 1, width = 40)
+ttk.Button(frm, text="Prosseguir", command=lambda: [fun1(), fun2()]).grid(column=2, row=0) #lambda permitiu usar mais de um comando para a função (fun1 e fun2)
+campo_api = Text(frm, height = 1, width = 41)
 campo_api.grid(column=1, row=0) #esse é o espaço de texto em si, onde a pessoa vai colocar a chave API dela 
-root.title("Ohayou, Seiji-kun!") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
+root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
 APIKEY = StringVar() 
-
 root.mainloop() 
-print(APIKEY.get()) #isso aqui é só pra confirmar que ele tá salvando a APIKEY da pessoa corretamente!!
+#print(APIKEY.get())       #isso aqui é só pra confirmar que ele tá salvando a APIKEY da pessoa corretamente!!
+
+#button = Button(master, text="Button", command=lambda: [fun1(), fun2()]) 
+
+#tela de SELEÇÃO DO ANIMAL
+tela2 = Tk()
+frm = ttk.Frame(tela2, padding=50)
+frm.grid()
+tela2.title("Seleção do Animal")
+ttk.Label(frm, text = "Escolha o seu animal ").grid(column=0, row=0)
+digitar = Text(frm, height=1, width=20)
+digitar.grid(column=1, row=0)
+ttk.Button(frm, text="Pronto!",).grid(column=1, row=1) #falta o command para pesquisar o animal
+ttk.Button(frm, text="Voltar").grid(column=2, row=2) #falta o command para retornar
+tela2.mainloop()
