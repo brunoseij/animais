@@ -1,1 +1,7 @@
 # animais
+
+dame da ne
+dame yo dame na no yo
+anta ga suki de sukisugite
+dore dake tsuyoi osake demo
+yugamanai omoide ga baka mitai
