@@ -1,7 +1,7 @@
 # animais
 
-dame da ne\n
-dame yo dame na no yo\n
-anta ga suki de sukisugite\n
-dore dake tsuyoi osake demo\n
-yugamanai omoide ga baka mitai\n
+#dame da ne
+#dame yo dame na no yo
+#anta ga suki de sukisugite
+#dore dake tsuyoi osake demo
+#yugamanai omoide ga baka mitai
