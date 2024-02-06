@@ -25,21 +25,17 @@ def fun1():
 def fun2(): #função associado ao botão de root para fechar a telinha
     root.destroy()
 
-#tela de COLOCAR API
 root = Tk()
 frm = ttk.Frame(root, padding=100)
 frm.grid()
 ttk.Label(frm, text="Insira a sua chave API ").grid(column=0, row=0) #esse é só o texto da esquerda
-ttk.Button(frm, text="Prosseguir", command=lambda: [fun1(), fun2()]).grid(column=2, row=0) #lambda permitiu usar mais de um comando para a função (fun1 e fun2)
+ttk.Button(frm, text="Prosseguir", command=lambda: [fun1(), fun2()]).grid(column=2, row=0) #lambda permitiu usar mais de um comando para a função (fun1 e fun2) só tem que def elas
 campo_api = Text(frm, height = 1, width = 41)
 campo_api.grid(column=1, row=0) #esse é o espaço de texto em si, onde a pessoa vai colocar a chave API dela 
 root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
 APIKEY = StringVar() 
 root.mainloop() 
 
-#button = Button(master, text="Button", command=lambda: [fun1(), fun2()]) 
-
-#tela de SELEÇÃO DO ANIMAL
 tela2 = Tk()
 frm = ttk.Frame(tela2, padding=50)
 frm.grid()
