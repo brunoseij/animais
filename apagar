@@ -1,0 +1,28 @@
+import tkinter
+from tkinter import * 
+from tkinter import ttk 
+
+def recuperar():
+    input = (mensagem).get("1.0", 'end-1c')
+    print(input) #verificar se a mensagem está sendo captada
+
+def fechar():
+    janela.destroy()
+
+def espaço_branco():
+    vazio = Label()
+    vazio.pack()
+
+janela = Tk()
+saudacao = Label(text="H-Henrik-chan? ")
+continuacao = Label(text="O-Ohayou...")
+vazio = Label()
+vazio2 = Label()
+mensagem = Text(height=1, width=10)
+botao = Button(text="Continuar", command=lambda: [recuperar(), fechar()])
+saudacao.pack()
+continuacao.pack()
+espaço_branco()
+mensagem.pack()
+botao.pack()
+janela.mainloop()
