@@ -1,4 +1,4 @@
-import tkinter
+import tkinter as tk
 from tkinter import * 
 from tkinter import ttk 
 
@@ -15,7 +15,7 @@ def espaço_branco():
 
 janela = Tk()
 saudacao = Label(text="H-Henrik-chan? ", fg="red", bg="black")      #fg = muda a cor do texto     bg = muda a cor do fundo
-continuacao = Label(text="O-Ohayou...", fg="#FC7F3F", bg="black") #a cor pode ser em sistema RGB hexadecimal
+continuacao = Label(text="O-Ohayou...", fg="#FC7F3F", bg="black", relief=RAISED) #a cor pode ser em sistema RGB hexadecimal
 mensagem = Text(height=1, width=10)
 botao = Button(text="Olá? Me chamou?", command=lambda: [recuperar(), fechar()], fg="red", bg="white")
 saudacao.pack()
@@ -24,3 +24,8 @@ espaço_branco()
 mensagem.pack()
 botao.pack()
 janela.mainloop()
+
+
+# window = Tk()
+# window.mainloop()
+# frameA = Frame(relief=RAISED)
