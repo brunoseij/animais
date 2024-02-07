@@ -26,6 +26,11 @@ def fun1():
 def fun2(): #função associado ao botão de root para fechar a telinha
     root.destroy()
 
+def retornar():
+    root.mainloop() #não tá abrindo a tela 1 -> será porque é um código anterior?
+    #tela2.destroy() #fecha a tela 2
+    #print("será que tá indo?")
+
 root = Tk()
 frm = ttk.Frame(root, padding=100)
 frm.grid()
@@ -45,5 +50,5 @@ Label(frm, text = "Escolha o seu animal ").grid(column=0, row=0)
 digitar = Text(frm, height=1, width=20)
 digitar.grid(column=1, row=0)
 Button(frm, text="Pronto").grid(column=1, row=1) #falta o command para pesquisar o animal
-Button(frm, text="Voltar").grid(column=2, row=2) #falta o command para retornar
+Button(frm, text="Voltar", command=retornar).grid(column=2, row=2) #falta o command para retornar
 tela2.mainloop()

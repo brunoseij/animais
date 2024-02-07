@@ -4,7 +4,7 @@ from tkinter import ttk
 
 def recuperar():
     input = (mensagem).get("1.0", 'end-1c')
-    print(input) #verificar se a mensagem está sendo captada
+    #print(input) #verificar se a mensagem está sendo captada
 
 def fechar():
     janela.destroy()
@@ -14,12 +14,10 @@ def espaço_branco():
     vazio.pack()
 
 janela = Tk()
-saudacao = Label(text="H-Henrik-chan? ")
-continuacao = Label(text="O-Ohayou...")
-vazio = Label()
-vazio2 = Label()
+saudacao = Label(text="H-Henrik-chan? ", fg="red", bg="black")      #fg = muda a cor do texto     bg = muda a cor do fundo
+continuacao = Label(text="O-Ohayou...", fg="#FC7F3F", bg="black") #a cor pode ser em sistema RGB hexadecimal
 mensagem = Text(height=1, width=10)
-botao = Button(text="Continuar", command=lambda: [recuperar(), fechar()])
+botao = Button(text="Olá? Me chamou?", command=lambda: [recuperar(), fechar()], fg="red", bg="white")
 saudacao.pack()
 continuacao.pack()
 espaço_branco()
