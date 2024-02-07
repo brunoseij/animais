@@ -17,7 +17,7 @@ root = Tk() #cria uma tela vazia
 frm = ttk.Frame(root, padding=100) #cria um espaço dentro da tela #padding é o tamanho
 frm.grid() #define como grid (grade) e possibilita colocar os demais itens em posições com coluna (column) e linha (row)
 Label(frm, text="Hello World!").grid(column=0, row=0) #cria um texto a ser visualizado
-Button(frm, text="Recuperar", command=recuperar).grid(column=0, row=1) #cria um botão interativo, que tem alguma função (pode ser alguma função que eu defino)
+Button(frm, text="Recuperar", command=recuperar).grid(column=1, row=1) #cria um botão interativo, que tem alguma função (pode ser alguma função que eu defino)
 eita = Text(frm, height=1, width=20)
 eita.grid(column=1, row=0)
 root.mainloop() #é basicamente o executável, como se fosse um print()
