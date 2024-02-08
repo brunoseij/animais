@@ -22,33 +22,38 @@ def pesquisar_animais(nome_do_bicho):
 
 def fun1():
     obter_api() #função associada ao botão de root para obter a API e deixar na memória armazenado
-
-def fun2(): #função associado ao botão de root para fechar a telinha
     root.destroy()
 
-def retornar():
-    root.mainloop() #não tá abrindo a tela 1 -> será porque é um código anterior?
-    #tela2.destroy() #fecha a tela 2
-    #print("será que tá indo?")
+# def nome():
+#     digitar.get("1.0",'end-1c')
 
 root = Tk()
 frm = ttk.Frame(root, padding=100)
 frm.grid()
 Label(frm, text="Insira a sua chave API ").grid(column=0, row=0) #esse é só o texto da esquerda
-Button(frm, text="Prosseguir", command=lambda: [fun1(), fun2()]).grid(column=2, row=0) #lambda permitiu usar mais de um comando para a função (fun1 e fun2) só tem que def elas
+Button(frm, text="Prosseguir", command=fun1).grid(column=2, row=0) #lambda permitiu usar mais de um comando para a função (fun1 e fun2) só tem que def elas
 campo_api = Text(frm, height = 1, width = 41)
 campo_api.grid(column=1, row=0) #esse é o espaço de texto em si, onde a pessoa vai colocar a chave API dela 
 root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
 APIKEY = StringVar() 
 root.mainloop() 
 
+def teste():
+    nome = (resposta).get("1.0", 'end-1c')
+    print(nome)
+
+def teste1():
+    nome = (resposta).get("1.0", 'end-1c')
+    pesquisar_animais(nome)
+
 tela2 = Tk()
 frm = ttk.Frame(tela2, padding=50)
 frm.grid()
 tela2.title("Seleção do Animal")
 Label(frm, text = "Escolha o seu animal ").grid(column=0, row=0)
-digitar = Text(frm, height=1, width=20)
-digitar.grid(column=1, row=0)
-Button(frm, text="Pronto").grid(column=1, row=1) #falta o command para pesquisar o animal
-Button(frm, text="Voltar", command=retornar).grid(column=2, row=2) #falta o command para retornar
+resposta = Text(frm, height=1, width=20)
+resposta.grid(column=1, row=0)
+Button(frm, text="Pronto", command=teste).grid(column=1, row=1) #falta o command para pesquisar o animal
+Button(frm, text="Pronto2", command=teste1).grid(column=1, row=2) #falta o command para pesquisar o animal
+Button(frm, text="Voltar").grid(column=2, row=2) #falta o command para retornar
 tela2.mainloop()
