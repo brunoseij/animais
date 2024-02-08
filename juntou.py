@@ -24,9 +24,6 @@ def fun1():
     obter_api() #função associada ao botão de root para obter a API e deixar na memória armazenado
     root.destroy()
 
-# def nome():
-#     digitar.get("1.0",'end-1c')
-
 root = Tk()
 frm = ttk.Frame(root, padding=100)
 frm.grid()
@@ -40,10 +37,6 @@ root.mainloop()
 
 def teste():
     nome = (resposta).get("1.0", 'end-1c')
-    print(nome)
-
-def teste1():
-    nome = (resposta).get("1.0", 'end-1c')
     pesquisar_animais(nome)
 
 tela2 = Tk()
@@ -53,7 +46,6 @@ tela2.title("Seleção do Animal")
 Label(frm, text = "Escolha o seu animal ").grid(column=0, row=0)
 resposta = Text(frm, height=1, width=20)
 resposta.grid(column=1, row=0)
-Button(frm, text="Pronto", command=teste).grid(column=1, row=1) #falta o command para pesquisar o animal
-Button(frm, text="Pronto2", command=teste1).grid(column=1, row=2) #falta o command para pesquisar o animal
+Button(frm, text="Pronto", command=teste).grid(column=1, row=2) #falta o command para pesquisar o animal
 Button(frm, text="Voltar").grid(column=2, row=2) #falta o command para retornar
 tela2.mainloop()
