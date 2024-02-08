@@ -13,19 +13,28 @@ def espaço_branco():
     vazio = Label()
     vazio.pack()
 
+def resposta_console():
+    frase = cbox.get()
+    print(frase)
+
 janela = Tk()
+janela.title("Amor Doce 2.0")
+janela.geometry("250x175")
 saudacao = Label(text="H-Henrik-chan? ", fg="red", bg="black")      #fg = muda a cor do texto     bg = muda a cor do fundo
 continuacao = Label(text="O-Ohayou...", fg="#FC7F3F", bg="black", relief=RAISED) #a cor pode ser em sistema RGB hexadecimal
 mensagem = Text(height=1, width=10)
-botao = Button(text="Olá? Me chamou?", command=lambda: [recuperar(), fechar()], fg="red", bg="white")
+ListCham = Label(text="Opções de diálogo", fg="green", width=25)
+ListResp = ["Olá, me chamou?","Karina, é você meu amor?","Alô, quem fala?","Oi, desculpa, não te vi"]
+cbox = ttk.Combobox(values=ListResp, width=25)
+cbox.set("Olá, me chamou?")
+botao = Button(text="NÃO CLICA", fg="medium violet red", bg="white", command=resposta_console)
 saudacao.pack()
 continuacao.pack()
 espaço_branco()
-mensagem.pack()
+#mensagem.pack()
+#botao.pack()
+ListCham.pack()
+cbox.pack()
+espaço_branco()
 botao.pack()
 janela.mainloop()
-
-
-# window = Tk()
-# window.mainloop()
-# frameA = Frame(relief=RAISED)
