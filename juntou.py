@@ -17,18 +17,18 @@ def tela1():
     return campo_api, APIKEY, root
 
 def tela2():
-    global tela2, resposta
-    tela2 = Tk()
-    frm = ttk.Frame(tela2, padding=50)
+    global root2, resposta
+    root2 = Tk()
+    frm = ttk.Frame(root2, padding=50)
     frm.grid()
-    tela2.title("Seleção do Animal")
+    root2.title("Seleção do Animal")
     Label(frm, text = "Escolha o seu animal ").grid(column=0, row=0)
     resposta = Text(frm, height=1, width=20)
     resposta.grid(column=1, row=0)
     Button(frm, text="Pronto", command=search_animal).grid(column=1, row=2) #falta o command para pesquisar o animal
     Button(frm, text="Voltar", command=retornar).grid(column=2, row=2) #falta o command para retornar
-    tela2.mainloop()
-    return resposta
+    root2.mainloop()
+    return root2, resposta
 
 def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos como resposta pelo usuário 
     msg = campo_api.get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
@@ -52,13 +52,14 @@ def fun1():
     obter_api() #função associada ao botão de root para obter a API e deixar na memória armazenado
     root.destroy()
     tela2()
-    
+
 def search_animal():
     nome = (resposta).get("1.0", 'end-1c')
     pesquisar_animais(nome)
 
 def retornar():
-    tela2.destroy(), root.mainloop()
+    root2.destroy()
+    tela1()
 
 def fechar1():
     inicial.destroy()
