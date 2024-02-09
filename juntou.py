@@ -35,7 +35,6 @@ def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos co
     if len(msg) == 40:
         APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
         pesquisar_animais
-        #print(APIKEY.get()) #teste para ver se a API está salvando dentro da função obter_api
     else:
         print("Tente novamente! A chave API deve conter 40 caracteres.") 
         root.mainloop()
