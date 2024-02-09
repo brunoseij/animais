@@ -2,6 +2,34 @@ import requests
 from tkinter import *
 from tkinter import ttk
 
+def tela1():
+    global root, campo_api, APIKEY
+    root = Tk()
+    frm = ttk.Frame(root, padding=100)
+    frm.grid()
+    Label(frm, text="Insira a sua chave API ").grid(column=0, row=0) #esse é só o texto da esquerda
+    Button(frm, text="Prosseguir", command=fun1).grid(column=2, row=0) #lambda permitiu usar mais de um comando para a função (fun1 e fun2) só tem que def elas
+    campo_api = Text(frm, height = 1, width = 41)
+    campo_api.grid(column=1, row=0) #esse é o espaço de texto em si, onde a pessoa vai colocar a chave API dela 
+    root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
+    APIKEY = StringVar() 
+    root.mainloop() 
+    return campo_api, APIKEY, root
+
+def tela2():
+    global tela2, resposta
+    tela2 = Tk()
+    frm = ttk.Frame(tela2, padding=50)
+    frm.grid()
+    tela2.title("Seleção do Animal")
+    Label(frm, text = "Escolha o seu animal ").grid(column=0, row=0)
+    resposta = Text(frm, height=1, width=20)
+    resposta.grid(column=1, row=0)
+    Button(frm, text="Pronto", command=search_animal).grid(column=1, row=2) #falta o command para pesquisar o animal
+    Button(frm, text="Voltar", command=retornar).grid(column=2, row=2) #falta o command para retornar
+    tela2.mainloop()
+    return resposta
+
 def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos como resposta pelo usuário 
     msg = campo_api.get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
     if len(msg) == 40:
@@ -23,29 +51,26 @@ def pesquisar_animais(nome_do_bicho):
 def fun1():
     obter_api() #função associada ao botão de root para obter a API e deixar na memória armazenado
     root.destroy()
-
-root = Tk()
-frm = ttk.Frame(root, padding=100)
-frm.grid()
-Label(frm, text="Insira a sua chave API ").grid(column=0, row=0) #esse é só o texto da esquerda
-Button(frm, text="Prosseguir", command=fun1).grid(column=2, row=0) #lambda permitiu usar mais de um comando para a função (fun1 e fun2) só tem que def elas
-campo_api = Text(frm, height = 1, width = 41)
-campo_api.grid(column=1, row=0) #esse é o espaço de texto em si, onde a pessoa vai colocar a chave API dela 
-root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
-APIKEY = StringVar() 
-root.mainloop() 
-
-def teste():
+    tela2()
+    
+def search_animal():
     nome = (resposta).get("1.0", 'end-1c')
     pesquisar_animais(nome)
 
-tela2 = Tk()
-frm = ttk.Frame(tela2, padding=50)
-frm.grid()
-tela2.title("Seleção do Animal")
-Label(frm, text = "Escolha o seu animal ").grid(column=0, row=0)
-resposta = Text(frm, height=1, width=20)
-resposta.grid(column=1, row=0)
-Button(frm, text="Pronto", command=teste).grid(column=1, row=2) #falta o command para pesquisar o animal
-Button(frm, text="Voltar").grid(column=2, row=2) #falta o command para retornar
-tela2.mainloop()
+def retornar():
+    tela2.destroy(), root.mainloop()
+
+def fechar1():
+    inicial.destroy()
+
+def fechar2():
+    root.destroy()
+
+inicial = Tk()
+inicial.title("Tela Inicial")
+inicial.geometry("300x200")
+botao_inicio =Button(inicial, text="COMEÇAR", justify="center", command=lambda:[fechar1(), tela1()])
+botao_inicio.pack()
+
+inicial.mainloop()
+

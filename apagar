@@ -27,7 +27,8 @@ janela.geometry("250x250") #define as dimensões da janela (largura x altura)
 
 barra = Menu(janela) #esse é o MENU completo
 #barra.add_command(label="hmmmm") #adiciona uma aba ("hmmmm") no menu principal (barra)
-MenuCont = Menu(barra, tearoff=0) #essa vai ser uma das abas do menu
+
+MenuCont = Menu(barra, tearoff=0) #essa vai ser uma das abas do menu  #tearoff=0 tira uma linha por padrão
 MenuCont.add_command(label="Novo", command=espaço_branco) #essa e as debaixo são as funções dentro dessa barra (MenuCont)
 MenuCont.add_command(label="Pesquisar", command=espaço_branco) 
 MenuCont.add_command(label="Remover", command=espaço_branco)
