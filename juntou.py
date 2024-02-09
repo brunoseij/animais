@@ -30,13 +30,14 @@ def tela2():
     root2.mainloop()
     return root2, resposta
 
-def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos como resposta pelo usuário 
+def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos como resposta pelo usuário  #FALTA VALIDAR A SENHA
     msg = campo_api.get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
     if len(msg) == 40:
         APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
+        pesquisar_animais
         #print(APIKEY.get()) #teste para ver se a API está salvando dentro da função obter_api
     else:
-        print("Tente novamente! A chave API deve conter 40 caracteres.")
+        print("Tente novamente! A chave API deve conter 40 caracteres.") 
         root.mainloop()
 
 def pesquisar_animais(nome_do_bicho):
@@ -70,8 +71,6 @@ def fechar2():
 inicial = Tk()
 inicial.title("Tela Inicial")
 inicial.geometry("300x200")
-botao_inicio =Button(inicial, text="COMEÇAR", justify="center", command=lambda:[fechar1(), tela1()])
+botao_inicio = Button(inicial, text="COMEÇAR", justify="center", command=lambda:[fechar1(), tela1()])
 botao_inicio.pack()
-
 inicial.mainloop()
-
