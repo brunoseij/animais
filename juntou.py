@@ -67,9 +67,33 @@ def fechar1():
 def fechar2():
     root.destroy()
 
+def espaço_branco():
+    vazio = Label()
+    vazio.pack()
+
+def print_sobre1():
+    print("Este é um programa utilizado para pesquisar por animais. Que tal começar buscando por 'quetzal'?")
+
+def print_sobre2():
+    print("Idealizado por Ribeiro-chan e Seiji-kun.")
+    
 inicial = Tk()
 inicial.title("Tela Inicial")
 inicial.geometry("300x200")
-botao_inicio = Button(inicial, text="COMEÇAR", justify="center", command=lambda:[fechar1(), tela1()])
+
+barrademenu = Menu(inicial)
+menu_sobre = Menu(barrademenu, tearoff=0)
+menu_sobre.add_command(label="Sobre", command=print_sobre1)
+menu_sobre.add_command(label="Criadores", command=print_sobre2)
+menu_sobre.add_separator()
+menu_sobre.add_command(label="Fechar", command=inicial.quit)
+barrademenu.add_cascade(label="Informações", menu=menu_sobre)
+inicial.config(menu=barrademenu)
+
+Times = ("Arial", 15)
+botao_inicio = Button(inicial, text="COMEÇAR", font=Times, justify="center", bg="light gray", command=lambda:[fechar1(), tela1()])
+espaço_branco()
+espaço_branco()
+espaço_branco()
 botao_inicio.pack()
 inicial.mainloop()
