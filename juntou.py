@@ -31,10 +31,14 @@ def tela2():
     return root2, resposta
 
 def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos como resposta pelo usuário  #FALTA VALIDAR A SENHA
-    msg = campo_api.get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
+    msg = (campo_api).get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
     if len(msg) == 40:
         APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
         pesquisar_animais
+        if root.winfo_exists():
+            root.destroy()
+        tela2()
+
     else:
         print("Tente novamente! A chave API deve conter 40 caracteres.") 
         root.mainloop()
@@ -50,8 +54,6 @@ def pesquisar_animais(nome_do_bicho):
 
 def fun1():
     obter_api() #função associada ao botão de root para obter a API e deixar na memória armazenado
-    root.destroy()
-    tela2()
 
 def search_animal():
     nome = (resposta).get("1.0", 'end-1c')
@@ -64,9 +66,6 @@ def retornar():
 def fechar1():
     inicial.destroy()
 
-def fechar2():
-    root.destroy()
-
 def espaço_branco():
     vazio = Label()
     vazio.pack()
@@ -76,18 +75,19 @@ def print_sobre1():
 
 def print_sobre2():
     print("Idealizado por Ribeiro-chan e Seiji-kun.")
-    
+
+#INFORMAÇÕES SOBRE A TELA INICIAL    
 inicial = Tk()
 inicial.title("Tela Inicial")
 inicial.geometry("300x200")
 
-barrademenu = Menu(inicial)
-menu_sobre = Menu(barrademenu, tearoff=0)
+barrademenu = Menu(inicial) #criação da barra de menus
+menu_sobre = Menu(barrademenu, tearoff=0) 
 menu_sobre.add_command(label="Sobre", command=print_sobre1)
 menu_sobre.add_command(label="Criadores", command=print_sobre2)
 menu_sobre.add_separator()
 menu_sobre.add_command(label="Fechar", command=inicial.quit)
-barrademenu.add_cascade(label="Informações", menu=menu_sobre)
+barrademenu.add_cascade(label="Informações", menu=menu_sobre) #definição de uma das abas
 inicial.config(menu=barrademenu)
 
 Times = ("Arial", 15)
