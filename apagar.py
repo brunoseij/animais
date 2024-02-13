@@ -20,13 +20,18 @@ def resposta_console():
 def mudar_coisa():
     surpresa.config(text="Poha menó, falei pra não clicar", width= 30, fg="white",bg="black")
 
+def novo_contato():
+    n_c1 = saudacao.config(text="N-Não quer mais o H-Henrik-chan??", fg="red", bg="black")
+    if n_c1 == "N-Não quer mais o H-Henrik-chan??":
+        saudacao.config(text="Quem mexeu tanto com a sua cabeça?", fg="red", bg="black")
+    
 janela = Tk() #cria a janela
 janela.title("Amor Doce 2.0") #altera o título da janela
 janela.geometry("250x250") #define as dimensões da janela (largura x altura)
 
 barra = Menu(janela) #esse é o MENU completo  #barra.add_command(label="hmmmm") #adiciona uma aba ("hmmmm") no menu principal (barra)
-MenuCont = Menu(barra, tearoff=0) #essa vai ser uma das abas do menu  #tearoff=0 tira uma linha por padrão
-MenuCont.add_command(label="Novo", command=espaço_branco) #essa e as debaixo são as funções dentro dessa barra (MenuCont)
+MenuCont = Menu(barra, tearoff=0) #essa vai ser uma das abas do menu  #tearoff=0 tira uma linha por padrão  #add.CHECKBUTTON deixa um certinho (reversível) e RADIOBUTTON irreversível
+MenuCont.add_command(label="Novo", command=novo_contato) #essa e as debaixo são as funções dentro dessa barra (MenuCont)
 MenuCont.add_command(label="Pesquisar", command=espaço_branco) 
 MenuCont.add_command(label="Remover", command=espaço_branco)
 MenuCont.add_separator() #adiciona uma linha que separa
