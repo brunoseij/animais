@@ -14,7 +14,7 @@ def tela1():
     root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
     APIKEY = StringVar() 
     root.mainloop() 
-
+    
 def tela2():
     global root2, resposta
     root2 = Tk()
@@ -27,7 +27,7 @@ def tela2():
     Button(frm, text="Pronto", command=search_animal).grid(column=1, row=2) #falta o command para pesquisar o animal
     Button(frm, text="Voltar", command=retornar).grid(column=2, row=2) #falta o command para retornar
     root2.mainloop()
-
+    
 def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos como resposta pelo usuário  #FALTA VALIDAR A SENHA
     msg = (campo_api).get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
     if len(msg) == 40:
