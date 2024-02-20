@@ -33,8 +33,6 @@ def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos co
     msg = (campo_api).get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
     if len(msg) == 40:
         APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
-        #pesquisar_animais
-        #if root.winfo_exists():
         root.destroy()
         tela2()
     else:
@@ -49,9 +47,6 @@ def pesquisar_animais(nome_do_bicho):
         response.text
     else:
         print("Error:", response.status_code, response.text)
-
-#def fun1():
-    #obter_api() #função associada ao botão de root para obter a API e deixar na memória armazenado
 
 def search_animal():
     nome = (resposta).get("1.0", 'end-1c')
@@ -87,7 +82,6 @@ def frame_tela2():
 inicial = Tk()
 inicial.title("Tela Inicial")
 inicial.geometry("300x200+1000+250")
-#inicial.state('normal') #a tela surge em tamanho normal, sem ser maximizado ou minimizado
 
 barrademenu = Menu(inicial) #criação da barra de menus
 menu_sobre = Menu(barrademenu, tearoff=0) 
