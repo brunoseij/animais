@@ -14,7 +14,7 @@ bicho = input("Digite o nome do bicho ") #variável bichog
 pesquisar_animais(api, bicho) #novamente, pede por 2 parâmetros até então
 
 pesquisar_outro = input("Gostaria de ver mais bicho? ") #LEMBRAR que é executado em sequência, ele executa esta daqui depois de rodar um pesquisar_animais
-while pesquisar_outro == "s": #determina uma CONDIÇÃO, nesse caso, a resposta ser " s ". Caso seja atendido o critério, repete o bloco de códigos da l17 e l18
+while pesquisar_outro == 's' or 'sim': #determina uma CONDIÇÃO, nesse caso, a resposta ser " s ". Caso seja atendido o critério, repete o bloco de códigos da l17 e l18
     pesquisar_animais(api,input("Coloca o nome então ")) #api já está definido, portanto o input é apenas para o animal (único parâmetro)
     pesquisar_outro = input("Qué mais? ")
 print("Obrigado por usar nossos serviços, adeus") #essa função irá rodar assim que o loop do while terminar ou não for executado
