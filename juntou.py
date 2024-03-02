@@ -3,17 +3,16 @@ from tkinter import *
 from tkinter import ttk
 
 def tela1():
-    global root, campo_api, APIKEY
+    global root, campo_api
     root = Tk()
     root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
     root.geometry('700x200+800+250')
-    frm = ttk.Frame(root, padding=100)
+    frm = ttk.Frame(root, padding=80)
     frm.grid()
-    Label(frm, text="Insira a sua chave API ").grid(column=0, row=0) #esse é só o texto da esquerda
-    campo_api = Text(frm, height = 1, width = 41)
+    Label(frm, text="Insira a sua chave API").grid(column=0, row=0) #esse é só o texto da esquerda
+    campo_api = Text(frm, height = 1, width = 40)  
     campo_api.grid(column=1, row=0) #esse é o espaço de texto em si, onde a pessoa vai colocar a chave API dela 
     Button(frm, text="Prosseguir", command=obter_api).grid(column=2, row=0) #VERIFICAR se dá pra usar o obter_api direto ou armazena em fun1
-    APIKEY = StringVar() 
     root.mainloop() 
     
 def tela2():
@@ -30,14 +29,19 @@ def tela2():
     root2.mainloop()
     
 def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos como resposta pelo usuário  #FALTA VALIDAR A SENHA
+    global APIKEY
     msg = (campo_api).get("1.0",'end-1c')[:40] #o trecho >> 1.0",'end-1c' << se refere a posição espacial de onde deve ser coletado (.get) os dados
+    APIKEY = StringVar()
     if len(msg) == 40:
         APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
-        root.destroy()
-        tela2()
+        response = requests.get('https://api.api-ninjas.com/v1/animals?name=seahorse', headers={'X-Api-Key': APIKEY.get()})
+        if response.status_code == requests.codes.ok:
+            root.destroy()
+            tela2()
+        else: 
+            print('\033[1;31mAPI Inválida\033[m')
     else:
-        print("Tente novamente! A chave API deve conter 40 caracteres.") 
-        root.mainloop()
+        print("\033[31mTente novamente! A chave API deve conter 40 caracteres\033[m.") 
 
 def pesquisar_animais(nome_do_bicho):
     global response
@@ -65,7 +69,7 @@ def espaço_branco():
     vazio.pack()
 
 def print_sobre1():
-    print("Este é um programa utilizado para pesquisar por animais. Que tal começar buscando por 'quetzal'?")
+    print("Este é um programa utilizado para pesquisar por animais.")
 
 def print_sobre2():
     print("Idealizado por Ribeiro-chan e Seiji-kun.")
@@ -83,7 +87,7 @@ inicial = Tk()
 inicial.title("Tela Inicial")
 inicial.geometry("300x200+1000+250")
 
-barrademenu = Menu(inicial) #criação da barra de menus
+barrademenu = Menu() #criação da barra de menus
 menu_sobre = Menu(barrademenu, tearoff=0) 
 menu_sobre.add_command(label="Sobre", command=print_sobre1)
 menu_sobre.add_command(label="Criadores", command=print_sobre2)
@@ -92,7 +96,6 @@ menu_sobre.add_command(label="Fechar", command=inicial.quit)
 barrademenu.add_cascade(label="Informações", menu=menu_sobre) #definição de uma das abas
 inicial.config(menu=barrademenu)
 
-Times = ("Arial", 15)
-botao_inicio = Button(inicial, text="COMEÇAR", font=Times, justify="center", bg="light gray", command=lambda:[fechar1(), tela1()]) #fecha a tela inicial e abre a tela 1
+botao_inicio = Button(inicial, text="COMEÇAR", font='Arial 20', bg="light gray", command=lambda:[fechar1(), tela1()]) #fecha a tela inicial e abre a tela 1
 botao_inicio.pack(pady=70) #ipadx e ipady definem a distância do texto até a borda do widget, enquanto que padx e pady criam um espaço em branco ao redor do widget
 inicial.mainloop()
