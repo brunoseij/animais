@@ -35,7 +35,7 @@ def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos co
     if len(msg) == 40:
         APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
         response = requests.get('https://api.api-ninjas.com/v1/animals?name=seahorse', headers={'X-Api-Key': APIKEY.get()})
-        if response.status_code == requests.codes.ok:
+        if response.ok == True:
             root.destroy()
             tela2()
         else: 
@@ -47,7 +47,7 @@ def pesquisar_animais(nome_do_bicho):
     global response
     api_url = f'https://api.api-ninjas.com/v1/animals?name={nome_do_bicho}'
     response = requests.get(api_url, headers={'X-Api-Key': APIKEY.get()}) #esse requests.get é uma função diferente do .get tradicional!! ela puxa informação de uma url
-    if response.status_code == requests.codes.ok:
+    if response.ok == True:
         response.text
     else:
         print("Error:", response.status_code, response.text)
