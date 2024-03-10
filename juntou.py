@@ -3,16 +3,16 @@ from tkinter import *
 from tkinter import ttk
 
 def tela1():
-    global root, campo_api
+    global root, campo_api, frm1
     root = Tk()
     root.title("Validação da API") #o nome do arquivo da janela (nesse caso, root) + .title permite ALTERAR O NOME dele 
     root.geometry('700x200+800+250')
-    frm = ttk.Frame(root, padding=80)
-    frm.grid()
-    Label(frm, text="Insira a sua chave API").grid(column=0, row=0) #esse é só o texto da esquerda
-    campo_api = Text(frm, height = 1, width = 40)  
+    frm1 = ttk.Frame(root, padding=80)
+    frm1.grid()
+    Label(frm1, text="Insira a sua chave API").grid(column=0, row=0) #esse é só o texto da esquerda
+    campo_api = Text(frm1, height = 1, width = 40)  
     campo_api.grid(column=1, row=0) #esse é o espaço de texto em si, onde a pessoa vai colocar a chave API dela 
-    Button(frm, text="Prosseguir", command=obter_api).grid(column=2, row=0) #VERIFICAR se dá pra usar o obter_api direto ou armazena em fun1
+    Button(frm1, text="Prosseguir", command=obter_api).grid(column=2, row=0) #VERIFICAR se dá pra usar o obter_api direto ou armazena em fun1
     root.mainloop() 
     
 def tela2():
@@ -34,19 +34,25 @@ def obter_api(): #essa função coleta os 40 primeiros dígitos (0-39) postos co
     APIKEY = StringVar()
     if len(msg) == 40:
         APIKEY.set(msg) #esse comando (.set) define essa msg como variável APIKEY 
-        response = requests.get('https://api.api-ninjas.com/v1/animals?name=seahorse', headers={'X-Api-Key': APIKEY.get()})
+        response = requests.get('https://api.api-ninjas.com/v1/animals?name=seahorse', headers={'X-Api-Key': APIKEY.get()}, timeout=2)
         if response.ok == True:
             root.destroy()
             tela2()
         else: 
-            print('\033[1;31mAPI Inválida\033[m')
+            api_msg = Label(frm1, text='API Inválida', pady=10)
+            api_msg.grid(column=1, row=3) # texto para aparecer na própria tela, ao invés do terminal
+            frm1.after(2000, api_msg.destroy)
+            #print('\033[1;31mAPI Inválida\033[m') 
     else:
-        print("\033[31mTente novamente! A chave API deve conter 40 caracteres\033[m.") 
+        caract_msg = Label(frm1, text='Tente Novamente. A chave API deve conter 40 caracteres', pady=10)
+        caract_msg.grid(column=1, row=4) # texto para aparecer na própria tela, ao invés do terminal
+        frm1.after(2000, caract_msg.destroy)
+        #print("\033[31mTente novamente! A chave API deve conter 40 caracteres\033[m.") 
 
 def pesquisar_animais(nome_do_bicho):
     global response
     api_url = f'https://api.api-ninjas.com/v1/animals?name={nome_do_bicho}'
-    response = requests.get(api_url, headers={'X-Api-Key': APIKEY.get()}) #esse requests.get é uma função diferente do .get tradicional!! ela puxa informação de uma url
+    response = requests.get(api_url, headers={'X-Api-Key': APIKEY.get()}, timeout=2) #esse requests.get é uma função diferente do .get tradicional!! ela puxa informação de uma url
     if response.ok == True:
         response.text
     else:
